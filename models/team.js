@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://roxmarjuk25_db_user:HjofPsEfeeQZB7y3@cluster0.xr8jcdh.mongodb.net/?appName=Cluster0")
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error(err));
 
 
 const teamModel = mongoose.Schema({
