@@ -1,0 +1,3 @@
+roxmarjuk25_db_user
+HjofPsEfeeQZB7y3
+mongodb+srv://roxmarjuk25_db_user:HjofPsEfeeQZB7y3@cluster0.xr8jcdh.mongodb.net/?appName=Cluster0

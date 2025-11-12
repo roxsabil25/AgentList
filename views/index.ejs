@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bet Fair - Online Betting Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0d4a1e;
+            --secondary-color: #d4af37;
+            --accent-color: #c62828;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --card-bg: rgba(30, 30, 30, 0.8);
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a6d2c);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .main ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main ul li {
+            margin-left: 20px;
+        }
+
+        .main ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .main ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Marquee Styles */
+        marquee {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 0;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://extremegaming8888.com/wp-content/uploads/2023/09/AnyConv.com__cache-7-1024x410.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Animations Container */
+        .animations-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .playing-card {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: bold;
+            animation: float 15s infinite linear;
+        }
+
+        .cricket-ball {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #ff9800, #e65100);
+            border-radius: 50%;
+            animation: bounce 12s infinite linear;
+        }
+
+        .football {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            background-image: radial-gradient(circle at 30% 30%, #000000, #333333);
+            background-size: 45px 45px;
+            animation: roll 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(100vh) translateX(0);
+            }
+            50% {
+                transform: translateY(50vh) translateX(100px);
+            }
+            100% {
+                transform: translateY(-100px) translateX(200px);
+            }
+        }
+
+        @keyframes roll {
+            0% {
+                transform: translateX(-100px) translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(-100px) rotate(720deg);
+            }
+        }
+
+        /* NEW CONTENT SECTION STYLES */
+        .content-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a1f0a 0%, var(--dark-color) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-color: var(--secondary-color);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #1a6d2c);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+        }
+
+        .card:hover .card-header::before {
+            animation: shimmer 1.5s ease;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .card-date {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .card-content {
+            padding: 25px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .card-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card-content::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+
+        .card-content h3 {
+            color: var(--secondary-color);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .card-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card-content li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .card-content li::before {
+            content: '•';
+            color: var(--secondary-color);
+            position: absolute;
+            left: -15px;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .warning {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .card-footer {
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .card-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .timeline-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0a3a16, var(--primary-color));
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+
+            .main ul {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            
+        }
+        .playing-card {
+  position: absolute;
+  width: 80px;
+  height: 120px;
+  object-fit: contain;
+  animation: float 15s infinite linear;
+}
+
+.cricket-ball,
+.football {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  animation: bounce 12s infinite linear;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="content">
+                <div class="main">
+                    <h2><i class="fas fa-dice"></i> roX Fair</h2>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                        <li><a href="/sub/admin">Sub-Admin</a></li>
+                        <li><a href="/super">Super</a></li>
+                        <li><a href="/agent" class="active">Master</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <marquee behavior="scroll" direction="left"> Welcome to Bet Fair - Your trusted online betting platform. Please read all terms and conditions before creating an account. </marquee>
+    
+    <section>
+        <div class="hero">
+            <div class="animations-container">
+                <!-- Playing Cards -->
+<img src="/img/akka.PNG" class="playing-card" style="left: 10%; animation-delay: 0s;">
+<img src="/img/k.PNG" class="playing-card" style="left: 20%; animation-delay: 3s;">
+<img src="/img/q.PNG" class="playing-card" style="left: 30%; animation-delay: 6s;">
+<img src="/img/j.PNG" class="playing-card" style="left: 40%; animation-delay: 9s;">
+
+<!-- Cricket Balls -->
+<img src="/img/c.PNG" class="cricket-ball" style="left: 15%; animation-delay: 2s;">
+<img src="/img/cc.PNG" class="cricket-ball" style="left: 25%; animation-delay: 7s;">
+
+<!-- Footballs -->
+<img src="/img/foot.PNG" class="football" style="left: 5%; animation-delay: 1s;">
+<img src="/img/f.PNG" class="football" style="left: 35%; animation-delay: 5s;">
+            </div>
+            
+            <div class="hero-content">
+                <h1>Welcome to Bet Fair</h1>
+                <p>Experience the thrill of online betting with our secure and reliable platform. Join thousands of satisfied users today!</p>
+                <a href="#" class="cta-button">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Important Information</h2>
+            
+            <div class="cards-container">
+                <!-- Account Opening Rules Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="card-title">একাউন্ট খোলার নিয়ম বা শর্ত গুলো </h3>
+                        <div class="card-date">January 26, 2025</div>
+                    </div>
+                    <div class="card-content">
+                        <p><span class="warning">WINPBU – Terms and Conditions</span></p>
+                        <p><span class="warning">Do not open an account without reading these conditions!!</span></p>
+                        <p>All super and master agents and all users are subject to these rules.</p>
+                        
+                        <h3>User Guidelines and Conditions:</h3>
+                        <ul>
+                            <li>Before taking points from the agent each time, you must know the transaction information from the agent.</li>
+                            <li>If any user sends money to the agent before 9:45 AM and after 9:45 PM, WINPBU will not be responsible for that money.</li>
+                            <li>After sending money via bKash/Nagad, you must contact the agent within 2 hours to receive points.</li>
+                            <li>Every day at 9:30 AM Bangladesh time, take a screenshot of how many points are in the account.</li>
+                        </ul>
+                        
+                        <h3>Betfair or WINPBU Site Conditions:</h3>
+                        <ul>
+                            <li>Betfair may sometimes make mistakes in settling bets.</li>
+                            <li>If Betfair makes a mistake in settling a bet, it may resettle it later.</li>
+                            <li>When Betfair settles a bet, it does so based on its own score.</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-badge">Important</span>
+                    </div>
+                </div>
+                
+                <!-- Transaction Information Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="card-title">কিভাবে লেনদেন করবেন?</h3>
+                        <div class="card-date">January 26, 2025</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>How to transact with bKash / Nagad / Rocket or other mobile banking?</h3>
+                        <p>When a user sends money to an agent and when an agent sends money to a user:</p>
+                        <ul>
+                            <li>If the user sends money to the agent's bKash personal, for 10 points, cash in or send money will be 1020 taka.</li>
+                            <li>If the user sends money to the agent's bKash agent, for 10 points, cash out will be 1000 taka.</li>
+                            <li>If the agent sends money to the user's bKash personal, for 10 points, the agent will cash in 1000 taka.</li>
+                        </ul>
+                        
+                        <h3>Mobile Banking Time Limit:</h3>
+                        <ul>
+                            <li>Mobile banking time is from 9:45 AM to 1:00 PM, then from 3:00 PM to 9:45 PM.</li>
+                            <li>No transaction can be made outside this time.</li>
+                            <li>If anyone sends money after 9:45 PM, the company will not be responsible.</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-badge">Guide</span>
+                    </div>
+                </div>
+                
+                <!-- Become an Agent Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-id-card-alt"></i>
+                        </div>
+                        <h3 class="card-title">কিভাবে আমি ভেল্কি তে এজেন্ট হতে পারি..</h3>
+                        <div class="card-date">January 28, 2025</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Local Master Agent System:</h3>
+                        <p>To become an agent, you need to contact our super agents.</p>
+                        <p>Click on this link to see the super agent list.</p>
+                        
+                        <h3>Point Buying and Selling:</h3>
+                        <ul>
+                            <li>The agent will buy points from Velki at 93 taka each.</li>
+                            <li>The agent will sell to the user at 100 taka each.</li>
+                            <li>Here the agent's profit will be 7%.</li>
+                            <li>Again:</li>
+                            <li>The agent will buy points from the user at 100 taka each.</li>
+                            <li>The agent will sell to Velki at 93 taka each.</li>
+                        </ul>
+                        
+                        <h3>Conditions:</h3>
+                        <ul>
+                            <li>The agent must buy 50 thousand taka worth of points to start as an agent.</li>
+                            <li>Excluding user balance, the agent must always have a balance of 1500 points.</li>
+                            <li>The agent cannot buy or sell below 500 points from Velki.</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-badge">New</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div class="timeline-section">
+                <h3 class="timeline-title">Agent Process Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Contact Super Agent</h3>
+                            <p>Reach out to a super agent to discuss becoming an agent and understand the requirements.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Initial Investment</h3>
+                            <p>Purchase 50,000 taka worth of points to start your agent account.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Maintain Minimum Balance</h3>
+                            <p>Ensure you always have at least 1,500 points balance (excluding user balances).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Recruit Active Players</h3>
+                            <p>Build your network with at least 30 active players to maintain agent status.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Start Earning</h3>
+                            <p>Begin earning commissions from user bets and point transactions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bet Fair</h3>
+                    <p>Your trusted online betting platform with secure transactions and fair gameplay.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Betting Street, City</li>
+                        <li><i class="fas fa-phone"></i> +880 1234-567890</li>
+                        <li><i class="fas fa-envelope"></i> info@betfair.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bet Fair. All rights reserved. | Please bet responsibly</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.5)';
+                    this.style.borderColor = 'var(--secondary-color)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                    this.style.borderColor = 'rgba(212, 175, 55, 0.2)';
+                });
+            });
+            
+            // Add animation to CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            
+            ctaButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 6px 20px rgba(212, 175, 55, 0.6)';
+            });
+            
+            ctaButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.4)';
+            });
+            
+            // Create additional floating elements dynamically
+            const animationsContainer = document.querySelector('.animations-container');
+            
+            for (let i = 0; i < 5; i++) {
+                // Create additional playing cards
+                const card = document.createElement('div');
+                // card.className = 'playing-card';
+                // card.textContent = ['A', 'K', 'Q', 'J', '10'][i];
+                card.style.left = `${Math.random() * 90}%`;
+                card.style.animationDelay = `${Math.random() * 15}s`;
+                animationsContainer.appendChild(card);
+                
+                // Create additional cricket balls
+                if (i < 3) {
+                    const ball = document.createElement('div');
+                    ball.className = 'cricket-ball';
+                    ball.style.left = `${Math.random() * 90}%`;
+                    ball.style.animationDelay = `${Math.random() * 12}s`;
+                    animationsContainer.appendChild(ball);
+                }
+            }
+            
+            // Add scroll animations to timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                if (index % 2 === 0) {
+                    item.style.transform = 'translateX(-50px)';
+                } else {
+                    item.style.transform = 'translateX(50px)';
+                }
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

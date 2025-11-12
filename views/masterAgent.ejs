@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Agent Directory - Bet Fair</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ... তোমার আগের CSS এখানে রাখো ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0d4a1e;
+            --secondary-color: #d4af37;
+            --accent-color: #c62828;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --gradient: linear-gradient(135deg, var(--primary-color), #1a6d2c);
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main ul li {
+            margin-left: 20px;
+        }
+
+        .main ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .main ul li a.active {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            padding-left: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            min-width: 180px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 14px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Agents Grid */
+        .agents-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 15px auto;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        /* Compact Agent Card */
+        .agent-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 280px; /* Fixed height for compact cards */
+        }
+
+        .agent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--secondary-color);
+        }
+
+        .agent-header {
+            background: var(--gradient);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 0 0 auto;
+        }
+
+        .agent-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+        }
+
+        .agent-card:hover .agent-header::before {
+            animation: shimmer 1.5s ease;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .agent-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary-color);
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .agent-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .agent-card:hover .agent-img img {
+            transform: scale(1.1);
+        }
+
+        .agent-info-top {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .agent-name {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .agent-title {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .agent-id {
+            background: rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            align-self: flex-start;
+        }
+
+        .agent-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .agent-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 3px;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .agent-contact {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .contact-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover::before {
+            transform: translateY(0);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .messenger {
+            background: #0084ff;
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .agent-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 2;
+        }
+
+        .online {
+            background: #4CAF50;
+            box-shadow: 0 0 8px #4CAF50, 0 0 15px #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(76, 175, 80, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+
+        .offline {
+            background: #f44336;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0a3a16, var(--primary-color));
+            padding: 50px 0 25px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 25px;
+            padding: 0 15px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main ul {
+                margin-top: 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main ul li {
+                margin: 5px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(212, 175, 55, 0.3);
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .agent-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .agent-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .agent-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .agent-card:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .agent-card:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        .agent-card:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="content">
+                <div class="main">
+                    <h2><i class="fas fa-dice"></i> Bet Fair</h2>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                        <li><a href="/sub/admin">Sub-Admin</a></li>
+                        <li><a href="/super">Super</a></li>
+                        <li><a href="/agent" class="active">Master Agent</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Master Agent Directory</h1>
+            <p>Connect with our trusted master agents for all your betting needs. Each agent is verified and ready to assist you with deposits, withdrawals, and account management.</p>
+        </div>
+    </section>
+
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by agent name or ID...">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="agents-section">
+        <div class="container">
+            <h2 class="section-title">Our Master Agents</h2>
+            <div class="agents-grid">
+        <% agents.forEach(function(agent) { %>
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-img">
+                            
+                            <img src="<%= agent.img ? agent.img : '/uploads/default.png' %>" alt="<%= agent.name %>">
+                        
+                        </div>
+                        <div class="agent-info-top">
+                            <h3 class="agent-name"><%= agent.name %></h3>
+                            <p class="agent-title"><%= agent.title %></p>
+                            <span class="agent-id"><%= agent.id %></span>
+                        </div>
+                        <div class="agent-status <%= agent.status %>"></div>
+                    </div>
+
+                    <div class="agent-content">
+                        <div class="agent-details">
+                            <div class="detail-item">
+                                <div class="detail-value"><%= agent.experience %> <span>years</span></div>
+                                <div class="detail-label">Experience</div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-value"><%= agent.sName %></div>
+                                <div class="detail-label">Site</div>
+                            </div>
+                        </div>
+                        <div class="agent-contact">
+                            <a href="<%= agent.facebook %>" target="_blank" class="contact-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="<%= agent.messenger %>" target="_blank" class="contact-btn messenger">
+                                <i class="fab fa-facebook-messenger"></i>
+                            </a>
+                            <a href="https://wa.me/<%= agent.whatsapp %>" target="_blank" class="contact-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer columns similar to your original code -->
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bet Fair. All rights reserved. | Please bet responsibly</p>
+            </div>
+        </div>
+    </footer>
+<div id="noResult" style="text-align:center; color:gray; display:none; margin-top:20px;">
+  No agent found!
+</div>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const agentCards = document.querySelectorAll(".agent-card");
+  const noResult = document.getElementById("noResult");
+
+  searchInput.addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    let found = false;
+
+    agentCards.forEach(card => {
+      const agentName = card.querySelector(".agent-name").textContent.toLowerCase();
+      const agentId = card.querySelector(".agent-id").textContent.toLowerCase();
+
+      if (agentName.includes(query) || agentId.includes(query) || query === "") {
+        card.style.display = "flex";
+        found = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    noResult.style.display = found ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>
