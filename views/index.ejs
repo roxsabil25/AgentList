@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bet Fair - Online Betting Platform</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>9wickets - Online Betting Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -619,6 +620,39 @@
   animation: bounce 12s infinite linear;
 }
 
+.news-ticker {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 0;
+    overflow: hidden; /* বাইরের অংশ দেখা যাবে না */
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-content {
+    display: inline-block;
+    padding-left: 100%; /* শুরু হবে স্ক্রিনের বাইরে থেকে */
+    animation: ticker-move 25s linear infinite; /* ২৫ সেকেন্ড পর পর লুপ হবে */
+    font-weight: 500;
+}
+
+/* এনিমেশন লজিক */
+@keyframes ticker-move {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* মাউস হোভার করলে লেখা থেমে যাবে (অপশনাল) */
+.news-ticker:hover .ticker-content {
+    animation-play-state: paused;
+}
     </style>
 </head>
 <body>
@@ -626,7 +660,7 @@
         <div class="container">
             <div class="content">
                 <div class="main">
-                    <h2><i class="fas fa-dice"></i> Bet Fair</h2>
+                    <h2><i class="fas fa-dice"></i> 9wickets</h2>
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/admin">Admin</a></li>
@@ -639,7 +673,12 @@
         </div>
     </header>
     
-    <marquee behavior="scroll" direction="left"> Welcome to Bet Fair - Your trusted online betting platform. Please read all terms and conditions before creating an account. </marquee>
+    <div class="news-ticker">
+    <div class="ticker-content">
+        Welcome to 9wickets - Your trusted online betting platform. Please read all terms and conditions before creating an account. &nbsp;&nbsp; | &nbsp;&nbsp; 
+        Welcome to 9wickets - Your trusted online betting platform. Please read all terms and conditions before creating an account.
+    </div>
+</div>
     
     <section>
         <div class="hero">
@@ -660,9 +699,9 @@
             </div>
             
             <div class="hero-content">
-                <h1>Welcome to Bet Fair</h1>
-                <p>Experience the thrill of online betting with our secure and reliable platform. Join thousands of satisfied users today!</p>
-                <a href="#" class="cta-button">Get Started Now</a>
+                <h1>Welcome to 9wickets</h1>
+                
+                <a href="https://wa.me/+13658721735" class="cta-button">Get Started Now</a>
             </div>
         </div>
     </section>
@@ -702,7 +741,7 @@
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://wa.me/+13658721735" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
                         <span class="card-badge">Important</span>
                     </div>
                 </div>
@@ -733,7 +772,7 @@
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://wa.me/+13658721735" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
                         <span class="card-badge">Guide</span>
                     </div>
                 </div>
@@ -754,23 +793,23 @@
                         
                         <h3>Point Buying and Selling:</h3>
                         <ul>
-                            <li>The agent will buy points from Velki at 93 taka each.</li>
+                            <li>The agent will buy points from 9wickets at 93 taka each.</li>
                             <li>The agent will sell to the user at 100 taka each.</li>
                             <li>Here the agent's profit will be 7%.</li>
                             <li>Again:</li>
                             <li>The agent will buy points from the user at 100 taka each.</li>
-                            <li>The agent will sell to Velki at 93 taka each.</li>
+                            <li>The agent will sell to 9wickets at 93 taka each.</li>
                         </ul>
                         
                         <h3>Conditions:</h3>
                         <ul>
                             <li>The agent must buy 50 thousand taka worth of points to start as an agent.</li>
                             <li>Excluding user balance, the agent must always have a balance of 1500 points.</li>
-                            <li>The agent cannot buy or sell below 500 points from Velki.</li>
+                            <li>The agent cannot buy or sell below 500 points from 9wickets.</li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://wa.me/+13658721735" class="read-more">Read Full Details <i class="fas fa-arrow-right"></i></a>
                         <span class="card-badge">New</span>
                     </div>
                 </div>
@@ -814,15 +853,119 @@
             </div>
         </div>
     </section>
+
+
+    <div class="mobile-nav">
+   <a href="/" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="/admin" class="nav-item">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin</span>
+    </a>
+    <a href="/sub/admin" class="nav-item">
+        <i class="fas fa-users-cog"></i>
+        <span>Sub-Admin</span>
+    </a>
+    <a href="/super" class="nav-item">
+        <i class="fas fa-star"></i>
+        <span>Super</span>
+    </a>
+    <a href="/agent" class="nav-item active">
+        <i class="fas fa-crown"></i>
+        <span>Master</span>
+    </a>
+
+    <a href="/support" class="nav-item">
+    <i class="fas fa-headset"></i>
+    <span>Support</span>
+</a>
+
+    <style>
+        /* ডেস্কটপে মোবাইল মেনু লুকানো থাকবে */
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* আগের হেডার মেনু ফোনে লুকিয়ে ফেলা (অপশনাল, যদি ডাবল মেনু না চান) */
+    header .main ul {
+        display: none;
+    }
+
+    /* বটম নেভিগেশন স্টাইল */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65px;
+        background: rgba(13, 74, 30, 0.95); /* আপনার প্রাইমারি কালার */
+        backdrop-filter: blur(10px);
+        border-top: 2px solid var(--secondary-color);
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+        padding-bottom: env(safe-area-inset-bottom); /* আইফোনের নিচের নচ এর জন্য */
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.75rem;
+        transition: all 0.3s ease;
+        flex: 1;
+    }
+
+    .nav-item i {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    /* একটিভ মেনু স্টাইল */
+    .nav-item.active {
+        color: var(--secondary-color);
+        transform: translateY(-5px);
+    }
+
+    .nav-item.active i {
+        color: var(--secondary-color);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    /* বডি টেক্সট যেন মেনুর নিচে ঢাকা না পড়ে */
+    body {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-item span {
+        font-size: 0.65rem; /* ৫টি আইকন হলে লেখা একটু ছোট করলে সুন্দর দেখায় */
+        margin-top: 2px;
+    }
+    
+    .nav-item i {
+        font-size: 1.1rem; /* আইকন সাইজ কিছুটা কমিয়ে ব্যালেন্স করা */
+    }
+}
+    </style>
+</div>
     
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Bet Fair</h3>
+                    <h3>9wickets</h3>
                     <p>Your trusted online betting platform with secure transactions and fair gameplay.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/Betfair506/?rdid=75H0HIhjvp9RXNxZ"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -831,7 +974,7 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                         <li><a href="#">Privacy Policy</a></li>
@@ -842,13 +985,13 @@
                     <h3>Contact Info</h3>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 123 Betting Street, City</li>
-                        <li><i class="fas fa-phone"></i> +880 1234-567890</li>
-                        <li><i class="fas fa-envelope"></i> info@betfair.com</li>
+                        <a  href="https://wa.me/+13658721735"><li><i class="fas fa-phone"></i>+13658721735</li></a>
+                        <li><i class="fas fa-envelope"></i> info@9wickets.com</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Bet Fair. All rights reserved. | Please bet responsibly</p>
+                <p>&copy; 9wickets. All rights reserved. | Please bet responsibly</p>
             </div>
         </div>
     </footer>

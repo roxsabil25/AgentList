@@ -31,7 +31,7 @@ app.get("/agent", async (req, res) => {
   try {
         const agents = await teamModel.find({}).lean(); // DB থেকে সব member fetch
         res.render("masterAgent", { agents });
-        console.log(agents);
+        agents.forEach(a => console.log(a));
         
     } catch (err) {
         console.log(err);
@@ -70,7 +70,7 @@ const {
       massenger
      } = req.body;
     const img = req.file ? `/uploads/teamProfile/${req.file.filename}` : null;
-
+      
 
     let newMember = await teamModel.create({
       name,
@@ -165,13 +165,19 @@ app.get('/signup/admin', async (req,res)=>{
       name:'rox'
 
     })
-    res.send(admin)
+    
 
 });
 
 app.get("/login/admin" , async (req,res)=>{
 
     res.render("adminlogin")
+
+});
+
+app.get("/support" , async (req,res)=>{
+
+    res.render("support")
 
 });
 

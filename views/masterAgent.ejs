@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Agent Directory - Bet Fair</title>
+    <title>Master Agent Directory - 9wickets</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ... তোমার আগের CSS এখানে রাখো ... */
@@ -668,7 +668,7 @@
         <div class="container">
             <div class="content">
                 <div class="main">
-                    <h2><i class="fas fa-dice"></i> Bet Fair</h2>
+                    <h2><i class="fas fa-dice"></i> 9wickets</h2>
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/admin">Admin</a></li>
@@ -681,12 +681,12 @@
         </div>
     </header>
 
-    <section class="page-hero">
+    <!-- <section class="page-hero">
         <div class="container">
             <h1>Master Agent Directory</h1>
             <p>Connect with our trusted master agents for all your betting needs. Each agent is verified and ready to assist you with deposits, withdrawals, and account management.</p>
         </div>
-    </section>
+    </section> -->
 
     <section class="search-filter">
         <div class="container">
@@ -733,16 +733,18 @@
                             </div>
                         </div>
                         <div class="agent-contact">
-                            <a href="<%= agent.facebook %>" target="_blank" class="contact-btn facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="<%= agent.messenger %>" target="_blank" class="contact-btn messenger">
-                                <i class="fab fa-facebook-messenger"></i>
-                            </a>
-                            <a href="https://wa.me/<%= agent.whatsapp %>" target="_blank" class="contact-btn whatsapp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
+    <a href="<%= agent.facbook %>" target="_blank" class="contact-btn facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    
+    <a href="<%= agent.massenger %>" target="_blank" class="contact-btn messenger">
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
+
+    <a href="https://wa.me/<%= agent.whatsapp %>" target="_blank" class="contact-btn whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
                     </div>
                 </div>
                 <% }); %>
@@ -750,13 +752,115 @@
         </div>
     </section>
 
+        <div class="mobile-nav">
+   <a href="/" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="/admin" class="nav-item">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin</span>
+    </a>
+    <a href="/sub/admin" class="nav-item">
+        <i class="fas fa-users-cog"></i>
+        <span>Sub-Admin</span>
+    </a>
+    <a href="/super" class="nav-item">
+        <i class="fas fa-star"></i>
+        <span>Super</span>
+    </a>
+    <a href="/agent" class="nav-item active">
+        <i class="fas fa-crown"></i>
+        <span>Master</span>
+    </a>
+    <a href="/support" class="nav-item">
+    <i class="fas fa-headset"></i>
+    <span>Support</span>
+</a>
+
+    <style>
+        /* ডেস্কটপে মোবাইল মেনু লুকানো থাকবে */
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* আগের হেডার মেনু ফোনে লুকিয়ে ফেলা (অপশনাল, যদি ডাবল মেনু না চান) */
+    header .main ul {
+        display: none;
+    }
+
+    /* বটম নেভিগেশন স্টাইল */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65px;
+        background: rgba(13, 74, 30, 0.95); /* আপনার প্রাইমারি কালার */
+        backdrop-filter: blur(10px);
+        border-top: 2px solid var(--secondary-color);
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+        padding-bottom: env(safe-area-inset-bottom); /* আইফোনের নিচের নচ এর জন্য */
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.75rem;
+        transition: all 0.3s ease;
+        flex: 1;
+    }
+
+    .nav-item i {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    /* একটিভ মেনু স্টাইল */
+    .nav-item.active {
+        color: var(--secondary-color);
+        transform: translateY(-5px);
+    }
+
+    .nav-item.active i {
+        color: var(--secondary-color);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    /* বডি টেক্সট যেন মেনুর নিচে ঢাকা না পড়ে */
+    body {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-item span {
+        font-size: 0.65rem; /* ৫টি আইকন হলে লেখা একটু ছোট করলে সুন্দর দেখায় */
+        margin-top: 2px;
+    }
+    
+    .nav-item i {
+        font-size: 1.1rem; /* আইকন সাইজ কিছুটা কমিয়ে ব্যালেন্স করা */
+    }
+}
+    </style>
+</div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <!-- Footer columns similar to your original code -->
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Bet Fair. All rights reserved. | Please bet responsibly</p>
+                <p>&copy;  9wickets. All rights reserved. | Please bet responsibly</p>
             </div>
         </div>
     </footer>
